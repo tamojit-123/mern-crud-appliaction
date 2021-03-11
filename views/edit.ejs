@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <title>User Information</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+          integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+            crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+            integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">User Information</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav d-flex">
+                <li>
+                    <img src="/uploads/<%= records.image %>" alt="profile image" width="30" height="30"
+                         style="border-radius: 50%;">
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        <%= records.name %>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-user-cog"></i>Settings</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="float-left" style="position: absolute; left: auto;">
+    <div class="container">
+        <div class="card mx-auto m-xl-5" style="width: 18rem;">
+            <img src="/uploads/<%= records.image %>" alt="profile image" class="card-img-top"
+                 style="border-radius: 50%;">
+            <div class="card-body">
+                <h5 class="card-title"><%= records.name %></h5>
+                <h5 class="card-title"><%= records.email %></h5>
+                <h5 class="card-title"><%= records.phone %></h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="float-right">
+    <div class="container">
+        <div class="card mx-auto m-xl-5" style="width: 50rem;">
+            <div class="card-header">Enter User Information</div>
+            <form action="/update/" id="EmployeeForm" class="col-7 g-3 needs-validation card-body" method="post"
+                  role="form"
+                  enctype="multipart/form-data">
+                <input type="hidden" name="id" value="<%= records._id %>">
+
+                <div class="mb-3">
+                    <label for="validationCustom01" class="form-label">Name</label>
+                    <input type="text" class="form-control" name="uname" id="validationCustom01"
+                           placeholder="Enter Your Name" value="<%= records.name %>">
+                    <div id="validationCustom01" class="form-text">Enter Your full name.</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" id="exampleInputEmail1"
+                           aria-describedby="emailHelp"
+                           placeholder="Enter Email Address" value="<%= records.email %>">
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone</label>
+                    <input type="tel" class="form-control" name="phone" id="phone"
+                           placeholder="Enter Phone Number" value="<%= records.phone %>">
+                    <div id="phone" class="form-text">
+                        Example +91(country code) XXXX-XXX-XXX.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="inputPassword5" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="inputPassword5" name="password"
+                           aria-describedby="passwordHelpBlock" value="<%= records.password %>">
+                    <div id="passwordHelpBlock" class="form-text">
+                        Your password must be 8-20 characters long, contain letters and numbers, and must not contain
+                        spaces, special characters, or emoji.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Profile Image</label>
+                    <input type="file" class="form-control" name="file" onchange="ValidateSize(this)" id="formFile">
+                    <div id="formFile" class="form-text">
+                        Choose your profile picture within 2mb file-size.
+                    </div>
+                </div>
+
+                <% if(records.image){ %>
+                    <img src="/uploads/<%= records.image %>" alt="profile image" width="80" style="border-radius: 50%;">
+                <% } %>
+                <div class="mb-3">
+                    <!-- Button -->
+                    <div class="col-md-offset-3 col-md-9">
+                        <input type="submit" name="submit" value="submit" class="btn btn-primary">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function ValidateSize(file) {
+        const FileSize = file.files[0].size / 1024 / 1024; // in MiB
+        if (FileSize > 2) {
+            alert('File size exceeds 2 MiB');
+            $(file).val(''); //for clearing with Jquery
+        } else {
+
+        }
+    }
+</script>
+</body>
+</html>
